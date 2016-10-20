@@ -8,30 +8,36 @@ namespace Maximum
     {
         static void Main(string[] args)
         {//ввод исходных значений
-            int A, B;
-            int.TryParse(Console.ReadLine(), out A);
-            int.TryParse(Console.ReadLine(), out B);
-            //если больше А
-            if (A >= B)
+            int A, B;          
+            if (int.TryParse(Console.ReadLine(), out A))
             {
+                if (int.TryParse(Console.ReadLine(), out B))
+                {
+                    //максимальное значение
+                    int Max;
+                    // если больше А
+                    if (A >= B)
+                    {
+                        Max = A;
+                    }
+                    //иначе больше В
+
+                    else
+                    {
+                        Max = B;
+                    };
+                    // Вывод результата 
+                    Console.WriteLine(" Максимальное = " + Max);
+                }
+                else
+                {
+                    Console.WriteLine("Неверное значение! Нужно ввести целое число.");
+                };
             }
-            //иначе -больше B
             else
             {
-            }
-            //максимальное значение
-            int Max;
-            // если больше А
-            if (A >= B)
-            {
-                Max = A;
-            }
-            else
-            {
-                Max = B;
+                Console.WriteLine("Неверное значение! Нужно ввести целое число.");
             };
-            // Вывод результата 
-            Console.WriteLine(" Максимальное = " + Max);
             // Завершение программы
             Console.ReadKey();
 
