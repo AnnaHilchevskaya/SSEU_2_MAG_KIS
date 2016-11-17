@@ -1,10 +1,11 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ArrayMax
+namespace SortArray
 {
-    class ArrayMax
+    class SortArray
     {
         static void Main(string[] args)
         {
@@ -31,16 +32,26 @@ namespace ArrayMax
                     Console.WriteLine("Введите целое число!");
                 };
             };
-            int max = a[0];
-            for (i = 1; i < a.Length; i++)
+            //сортировка массива
+            for (i = 0; i < a.Length - 1; i++)
             {
-                if (a[i] > max)
+                for (int j = 1; j < a.Length - i; j++)
                 {
-                    max = a[i];
+                    //если предыдущий элемент больше текущего, поменять их местами
+                    if (a[j - 1] >= a[j])
+                    {
+                        int buf = a[j];
+                        a[j] = a[j - 1];
+                        a[j - 1] = buf;
+                    };
                 };
             };
-            //вывод результата
-            Console.WriteLine("Максимальное значение: " + max);
+            //вывод отсортированного массива
+            Console.WriteLine("Отсортированный массив:");
+            for (i = 0; i < a.Length; i++)
+            {
+                Console.WriteLine(a[i]);
+            };
             Console.ReadKey();
         }
     }
