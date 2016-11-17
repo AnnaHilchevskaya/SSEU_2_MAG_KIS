@@ -2,21 +2,45 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SummaMas
+namespace ArrayMax
 {
-    class SummaMas
+    class ArrayMax
     {
         static void Main(string[] args)
         {
-            int sum = 0;
-            int[] arr = new int[5];
-            for (int i = 0; i < 5; i++)
+            //ввод длины массива
+            int n;
+            do
             {
-                Console.WriteLine("Введите значение: ");  
-                arr[i] = int.Parse(Console.ReadLine());
-                sum += arr[i];             
+                Console.Write("Введите длину массива: ");
             }
-            Console.WriteLine("Сумма: " + sum);
+            while (!int.TryParse(Console.ReadLine(), out n) || (n <= 0));
+            //инициализация массива
+            int[] a = new int[n];
+            //ввод значений массива
+            int i = 0;
+            while (i < n)
+            {
+                Console.Write("Введите а[" + i + "]:");
+                if (int.TryParse(Console.ReadLine(), out a[i]))
+                {
+                    i++;
+                }
+                else
+                {
+                    Console.WriteLine("Введите целое число!");
+                };
+            };
+            int max = a[0];
+            for (i = 1; i < a.Length; i++)
+            {
+                if (a[i] > max)
+                {
+                    max = a[i];
+                };
+            };
+            //вывод результата
+            Console.WriteLine("Максимальное значение: " + max);
             Console.ReadKey();
         }
     }
