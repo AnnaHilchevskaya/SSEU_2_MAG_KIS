@@ -81,7 +81,7 @@ namespace Student
             textBoxStudentInfo.Text = student1.ToString(); //вывести на экран
         }
 
-        ////private void numericUpDownEkz4_ValueChanged(object sender, EventArgs e)
+        private void numericUpDownEkz4_ValueChanged(object sender, EventArgs e)
         {
             //записать оценку в массив, приведя к типу byte
             student1.ozenki[comboBoxSemestr.SelectedIndex, 3] = (byte)numericUpDownEkz4.Value;
@@ -419,6 +419,27 @@ namespace Student
                 //оценку вводить можно
                 numericUpDownEkz5.Enabled = true;
             };
+        }
+
+        private void buttonNaSledKurs_Click(object sender, EventArgs e)
+        {
+            //выполнить перевод
+            student1.PerevestiNaSledKurs();
+            //вывести на форму
+            numericUpDownKurs.Value = student1.kurs;
+            textBoxStudentInfo.Text = student1.ToString();
+        }
+
+        private void numericUpDownEkz1_ValueChanged_1(object sender, EventArgs e)
+        {
+            //записать оценку в массив, приведя к типу byte
+            student1.ozenki[comboBoxSemestr.SelectedIndex, 0] = (byte)numericUpDownEkz1.Value;
+            textBoxStudentInfo.Text = student1.ToString(); //вывести на экран
+        }
+
+        private void labelKurs_Click(object sender, EventArgs e)
+        {
+
         }
 
     }
