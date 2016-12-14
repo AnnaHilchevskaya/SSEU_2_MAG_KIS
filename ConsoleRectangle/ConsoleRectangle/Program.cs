@@ -13,7 +13,7 @@ namespace ConsoleRectangle
         public Rectangle(double x1, double y1, double x2, double y2)
         {
             //начальные координаты
-            this.x1 = x2; this.y1 = y1;
+            this.x1 = x1; this.y1 = y1;
             this.x2 = x2; this.y2 = y2;
         }
         //ширина
@@ -37,6 +37,28 @@ namespace ConsoleRectangle
         {
             //ширина * высота
             return Width() * Height();
+        }
+        //квадрат?
+        public bool IsSquare()
+        {
+            //ширина = высота?
+            return Width() == Height();
+        }
+        //перемещение
+        public void Move(double x, double y)
+        {
+            x1 += x; x2 += x;
+            y1 += y; y2 += y;
+        }
+        //изменить ширину
+        public void SetWidth(double newWidth)
+        {
+            x2 = x1 + newWidth;
+        }
+        //изменить высоту
+        public void SetHeight(double newHeight)
+        {
+            y2 = y1 + newHeight;
         }
     }
 
@@ -74,9 +96,50 @@ namespace ConsoleRectangle
                 Console.WriteLine("Высота прямоугольника = " + r.Height());
                 Console.WriteLine("Периметр прямоугольника = " + r.P());
                 Console.WriteLine("Площадь прямоугольника = " + r.S());
+                //меню
+                Console.WriteLine("\t\t\t╔═════════════════════════════╗");
+                Console.WriteLine("\t\t\t║             МЕНЮ            ║");
+                Console.WriteLine("\t\t\t║ a - является ли квадратом?  ║");
+                Console.WriteLine("\t\t\t║ b - переместить             ║");
+                Console.WriteLine("\t\t\t║ c - изменить ширину         ║");
+                Console.WriteLine("\t\t\t║ d - изменить высоту         ║");
+                Console.WriteLine("\t\t\t║ ESC - выход                 ║");
+                Console.WriteLine("\t\t\t╚═════════════════════════════╝");
 
                 //нажатие клавиш
                 key = Console.ReadKey().KeyChar;
+                //проверка нажатой клавиши
+                switch (key)
+                {
+                    case 'a':
+                        Console.Clear();
+                        if (r.IsSquare())
+                            Console.WriteLine("Квадрат (" + r.Width() + " = " + r.Height() + ")");
+                        else
+                            Console.WriteLine("Не квадрат (" + r.Width() + " != " + r.Height() + ")");
+                        Console.WriteLine("Нажмите любую клавишу");
+                        Console.ReadKey();
+                        break;
+                    case 'b': //перемещение
+                        Console.Clear();
+                        r.Move(ReadCoord(" по х: "), ReadCoord(" по y: "));
+                        Console.ReadKey();
+                        break;
+                    case 'c': //измерить ширину
+                        Console.Clear();
+                        Console.WriteLine("Какую установить ширину?");
+                        r.SetWidth(ReadCoord(""));
+                        Console.WriteLine("Нажмите любую клавишу");
+                        Console.ReadKey();
+                        break;
+                    case 'd': //изменить высоту
+                        Console.Clear();
+                        Console.WriteLine("Какую установить высоту?");
+                        r.SetHeight(ReadCoord(""));
+                        Console.WriteLine("Нажмите любую клавишу");
+                        Console.ReadKey();
+                        break;
+                };
             }
             while (key != (char)27); //пока не нажат Esc
         }
